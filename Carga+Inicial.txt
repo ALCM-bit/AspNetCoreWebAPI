@@ -1,25 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SmartSchool.WebAPI.Models;
-
-namespace SmartSchool.WebAPI.Data
-{
-    public class SmartContext:DbContext
-    {
-        public SmartContext(DbContextOptions<SmartContext> options):base(options)
-        {
-           
-        }
-        public DbSet<Aluno> Alunos { get; set; }
-        public DbSet<Professor> Professores { get; set; }
-        public DbSet<Disciplina> Disciplinas { get; set; }
-        public DbSet<AlunoDisciplina> AlunosDisciplinas { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<AlunoDisciplina>()
-                .HasKey(AD => new { AD.AlunoId, AD.DisciplinaId });
-
-            builder.Entity<Professor>()
+builder.Entity<Professor>()
                 .HasData(new List<Professor>(){
                     new Professor(1, "Lauro"),
                     new Professor(2, "Roberto"),
@@ -27,7 +6,7 @@ namespace SmartSchool.WebAPI.Data
                     new Professor(4, "Rodrigo"),
                     new Professor(5, "Alexandre"),
                 });
-
+            
             builder.Entity<Disciplina>()
                 .HasData(new List<Disciplina>{
                     new Disciplina(1, "Matemática", 1),
@@ -36,7 +15,7 @@ namespace SmartSchool.WebAPI.Data
                     new Disciplina(4, "Inglês", 4),
                     new Disciplina(5, "Programação", 5)
                 });
-
+            
             builder.Entity<Aluno>()
                 .HasData(new List<Aluno>(){
                     new Aluno(1, "Marta", "Kent", "33225555"),
@@ -74,7 +53,3 @@ namespace SmartSchool.WebAPI.Data
                     new AlunoDisciplina() {AlunoId = 7, DisciplinaId = 4 },
                     new AlunoDisciplina() {AlunoId = 7, DisciplinaId = 5 }
                 });
-        }
-
-    }
-}
