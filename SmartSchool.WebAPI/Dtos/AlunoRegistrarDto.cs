@@ -1,23 +1,9 @@
-﻿using System.Net.NetworkInformation;
+﻿using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.WebAPI.Models
+namespace SmartSchool.WebAPI.Dtos
 {
-    public class Aluno
+    public class AlunoRegistrarDto
     {
-        public Aluno() 
-        {
-        }
-
-        public Aluno(int id, int matricula, string nome, string sobrenome, string telefone, DateTime dataNasc)
-        {
-            this.Id = id;
-            this.Matricula = matricula;
-            this.Nome = nome;
-            this.Sobrenome = sobrenome;
-            this.Telefone = telefone;
-            this.DataNasc = dataNasc;
-        }
-
         public int Id { get; set; }
         public int Matricula { get; set; }
         public string Nome { get; set; }
