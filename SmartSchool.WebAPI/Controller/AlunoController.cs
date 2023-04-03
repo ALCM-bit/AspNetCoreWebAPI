@@ -23,7 +23,10 @@ namespace SmartSchool.WebAPI.Controller
             this._repo = repo;
             
         }
-
+        /// <summary>
+        /// Método responsável por retornar todos os meus alunos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -40,6 +43,11 @@ namespace SmartSchool.WebAPI.Controller
             return Ok(new AlunoRegistrarDto());
         }
 
+        /// <summary>
+        /// Método responsável por retornar apenas um aluno por meio do id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //http://localhost:5015/api/aluno/byId/1 faz parte da rota
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

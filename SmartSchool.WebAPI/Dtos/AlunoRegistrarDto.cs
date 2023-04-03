@@ -2,6 +2,9 @@
 
 namespace SmartSchool.WebAPI.Dtos
 {
+    /// <summary>
+    /// Esse é o DTO de Aluno para registrar
+    /// </summary>
     public class AlunoRegistrarDto
     {
         public int Id { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,8 +49,22 @@ namespace SmartSchool.WebAPI
                         new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
                         Title = "SmartSchool API",
-                        Version = "1.0"
+                        Version = "1.0",
+                        TermsOfService = new Uri("https://MeusTermosDeServico.com"),
+                        Description = "WebAPI desenvolvida para fins academicos",
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                                Name = "Smart School license",
+                                Url = new Uri("https://myLicense.com")
+                            },
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Name = "Felipe Augusto",
+                            Email = "felipealcmagalhaes@gmail.com"
+                        }
                     });
+
+                    
                 });
 
         }
