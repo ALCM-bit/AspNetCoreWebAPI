@@ -2,15 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V1.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartSchool.WebAPI.Controller
+namespace SmartSchool.WebAPI.V1.Controller
 {
-    [Route("api/[controller]")]
+
+
     [ApiController]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repo;
@@ -18,10 +21,10 @@ namespace SmartSchool.WebAPI.Controller
 
         public ProfessorController(IRepository repo, IMapper mapper)
         {
-            this._repo = repo;
-            this._mapper = mapper;
+            _repo = repo;
+            _mapper = mapper;
         }
-        
+
 
         [HttpGet]
         public IActionResult Get()

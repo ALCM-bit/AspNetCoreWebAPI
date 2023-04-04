@@ -2,26 +2,36 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V1.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartSchool.WebAPI.Controller
+namespace SmartSchool.WebAPI.V1.Controller
 {
-    [Route("api/aluno")]
+    /// <summary>
+    /// 
+    /// </summary>
+
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/aluno")]
     public class AlunoController : ControllerBase
     {
-        
+
         public readonly IRepository _repo;
         public readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public AlunoController(IRepository repo, IMapper mapper)
         {
             _mapper = mapper;
-            this._repo = repo;
-            
+            _repo = repo;
+
         }
         /// <summary>
         /// Método responsável por retornar todos os meus alunos
@@ -31,14 +41,18 @@ namespace SmartSchool.WebAPI.Controller
         public IActionResult Get()
         {
             var alunos = _repo.GetAllAlunos(true);
-            
+
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
+        /// <summary>
+        /// Método responsável por retornar apenas um único AlunoDTO
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRegister")]
         public IActionResult GetRegister()
         {
-            
+
 
             return Ok(new AlunoRegistrarDto());
         }
@@ -70,7 +84,7 @@ namespace SmartSchool.WebAPI.Controller
                 return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno));
             }
             return BadRequest("Aluno não cadastrado");
-            
+
         }
         [HttpPut("{id}")]
         public IActionResult Put(int id, AlunoRegistrarDto model)
@@ -105,7 +119,7 @@ namespace SmartSchool.WebAPI.Controller
             return BadRequest("Aluno não Atualizado");
         }
 
-        
+
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

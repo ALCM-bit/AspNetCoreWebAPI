@@ -1,6 +1,6 @@
 ﻿using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.WebAPI.Dtos
+namespace SmartSchool.WebAPI.V1.Dtos
 {
     public class AlunoDto
     {
@@ -9,7 +9,7 @@ namespace SmartSchool.WebAPI.Dtos
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Telefone { get; set; }
-        public int Idade {get; set; }
+        public int Idade { get; set; }
         public DateTime DataIni { get; set; }
         public DateTime? DataFim { get; set; } = null;
         public bool Ativo { get; set; }
